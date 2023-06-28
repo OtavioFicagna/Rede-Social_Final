@@ -65,6 +65,12 @@ void follow_user(std::unordered_map<std::string, Users> &map_users) {
         return;
     }
 
+    if(emailSeguido == emailSeguidor)
+    {
+        std::cout << "Usuário seguidor é igual ao usuário seguido\n";
+        return;
+    }
+
     if (map_users[emailSeguidor].getSeguindo().find(emailSeguido) != map_users[emailSeguidor].getSeguindo().end()) {
         std::cout << emailSeguidor << " já está seguindo " << emailSeguido << ".\n";
         return;
@@ -289,6 +295,7 @@ void show_networkInformation(std::unordered_map<std::string, Users>& map_users) 
     int grauMedioSaida = 0;
     int diametroGrafo = 0;
     int usuarioMaiorNumSeguidores = 0;
+    std::string nome;
 
     for (const auto& par : map_users) {
         Users usuario = par.second;
@@ -297,6 +304,7 @@ void show_networkInformation(std::unordered_map<std::string, Users>& map_users) 
         grauMedioEntrada += usuario.getSeguidores().size();
         if (usuario.getSeguidores().size() > usuarioMaiorNumSeguidores) {
             usuarioMaiorNumSeguidores = usuario.getSeguidores().size();
+            nome = usuario.getName();
         }
     }
 
@@ -310,7 +318,10 @@ void show_networkInformation(std::unordered_map<std::string, Users>& map_users) 
     std::cout << "Grau médio de entrada: " << grauMedioEntrada << "\n";
     std::cout << "Grau médio de saída: " << grauMedioSaida << "\n";
     std::cout << "Diâmetro do grafo: " << diametroGrafo << "\n";
-    std::cout << "Usuário com maior número de seguidores: " << usuarioMaiorNumSeguidores << "\n";
+    std::cout << "Usuário com maior número de seguidores: " << nome 
+                                                            << " com "
+                                                            << usuarioMaiorNumSeguidores 
+                                                            << " seguidores\n";
 }
 
 int main()

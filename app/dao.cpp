@@ -56,8 +56,8 @@ bool load_data(std::unordered_map<std::string, Users>& map_users)
         std::string birthDate = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
         std::string phNumber = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
         std::string city = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
-        std::unordered_set<std::string> seguindo; // Preencha com os dados apropriados
-        std::unordered_set<std::string> seguidores; // Preencha com os dados apropriados
+        std::unordered_set<std::string> seguindo;
+        std::unordered_set<std::string> seguidores;
         Users user(email, name, birthDate, phNumber, city, seguindo, seguidores);
         map_users[email] = user;
     }
